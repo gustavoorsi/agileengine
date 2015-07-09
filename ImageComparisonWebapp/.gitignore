@@ -30,6 +30,7 @@ local.properties
 .loadpath
 target
 target/
+.springBeans
 
 # Eclipse Core
 .project
