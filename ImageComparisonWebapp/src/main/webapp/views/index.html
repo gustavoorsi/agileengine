@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Image differnce finder</title>
+
+<!-- Bootstrap core CSS -->
+<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap theme -->
+<link href="http://getbootstrap.com/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="http://getbootstrap.com/examples/theme/theme.css" rel="stylesheet">
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+
+<script type="text/javascript">
+	function uploadJqueryForm() {
+		$("#uploadImagesForm").ajaxForm({
+			success : function(data) {
+				var imageSrc = "data:image/jpg;base64," + data;
+				$('#imageResult').attr('src', imageSrc);
+
+			},
+			dataType : "text"
+		}).submit();
+	}
+	
+	var previewImagaA = function(event) {
+	    var reader = new FileReader();
+	    reader.onload = function(){
+	      var output = document.getElementById('previewImageA');
+	      output.src = reader.result;
+	    };
+	    reader.readAsDataURL(event.target.files[0]);
+	  };
+	  
+	  var previewImagaB = function(event) {
+		    var reader = new FileReader();
+		    reader.onload = function(){
+		      var output = document.getElementById('previewImageB');
+		      output.src = reader.result;
+		    };
+		    reader.readAsDataURL(event.target.files[0]);
+		  };
+</script>
+
+<style type="text/css">
+.btn-file {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
+}
+</style>
+
+</head>
+
+<body role="document">
+
+	<h1 style="text-align: center;" >Image Difference Finder</h1>
+
+	<div class="container theme-showcase" role="main">
+	
+		<div class="jumbotron">
+		
+		<div class="row" >
+			<div class="col-md-6" style="text-align: center;">
+				<img id="previewImageA" data-src="holder.js/200x200" class="img-thumbnail" alt="200x200"
+					src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzIwMHgyMDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNGU3MTZlYjNhZSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE0ZTcxNmViM2FlIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc1LjUiIHk9IjEwNC41Ij4yMDB4MjAwPC90ZXh0PjwvZz48L2c+PC9zdmc+"
+					data-holder-rendered="true" style="width: 200px; height: 200px;">
+			</div>
+			<div class="col-md-6" style="text-align: center;">
+				<img id="previewImageB" data-src="holder.js/200x200" class="img-thumbnail" alt="200x200"
+					src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzIwMHgyMDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNGU3MTZlYjNhZSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE0ZTcxNmViM2FlIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc1LjUiIHk9IjEwNC41Ij4yMDB4MjAwPC90ZXh0PjwvZz48L2c+PC9zdmc+"
+					data-holder-rendered="true" style="width: 200px; height: 200px;">
+			</div>
+		</div>
+		
+		<div class="row" >
+			<form id="uploadImagesForm" method="post" action="http://localhost:8080/api/v1/image/upload" enctype="multipart/form-data">
+				<div class="col-md-6" style="text-align: center;">
+					<span class="btn btn-default btn-file"> Browse Image A<input name="file1" id="file1" type="file" onchange="previewImagaA(event)" /></span>
+				</div>
+				
+				<div class="col-md-6" style="text-align: center;">
+					<span class="btn btn-default btn-file"> Browse Image B<input name="file2" id="file2" type="file" onchange="previewImagaB(event)" /></span>
+				</div> 
+			
+			</form>
+		</div>
+
+		<div class="row" style="padding-top: 10px" >
+			<div class="col-md-12" style="text-align: center;">
+				<button value="Submit" onclick="uploadJqueryForm()" class="btn btn-lg btn-primary">Find Differences</button>
+			</div>
+		
+		</div>
+			
+		</div>
+
+	</div>
+	
+	<hr/>
+
+	<div class="row">
+		<div class="col-md-12" style="text-align: center;">
+			<img id="imageResult" data-src="holder.js/200x200" class="img-thumbnail" alt="200x200"
+				src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzIwMHgyMDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNGU3MTZlYjNhZSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE0ZTcxNmViM2FlIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc1LjUiIHk9IjEwNC41Ij4yMDB4MjAwPC90ZXh0PjwvZz48L2c+PC9zdmc+"
+				data-holder-rendered="true" style="width: 200px; height: 200px;">
+			<h4>Image Result</h4>
+		</div>
+	</div>
+
+	
+
+</body>
+</html>
