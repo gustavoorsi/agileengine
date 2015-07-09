@@ -19,21 +19,21 @@ public class ImageComparisonApplication {
         SpringApplication.run(ImageComparisonApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner init(final ImageDifferenceFinder imageDifferenceFinder) {
-        
-        return (evt) -> {
-            
-            BufferedImage imageA = ImageIO.read(new File("c:\\house.png"));
-            BufferedImage imageB = ImageIO.read(new File("c:\\house2.png"));
-            
-            BufferedImage imageDifference = imageDifferenceFinder.compareImages(imageA, imageB);
-            
-            File outputImage = new File("c:\\imageX.png");
-            ImageIO.write(imageDifference, "png", outputImage);
-            
-        };
-
-    }
+//    @Bean
+//    CommandLineRunner init(final ImageDifferenceFinder imageDifferenceFinder) {
+//        
+//        return (evt) -> {
+//            
+//            BufferedImage imageA = ImageIO.read(new File("c:\\house.png"));
+//            BufferedImage imageB = ImageIO.read(new File("c:\\house4.png"));
+//            
+//            BufferedImage imageDifference = imageDifferenceFinder.compareImages(imageA, imageB);
+//            
+//            File outputImage = new File("c:\\imageX.png");
+//            ImageIO.write(imageDifference, "png", outputImage);
+//            
+//        };
+//
+//    }
 
 }
